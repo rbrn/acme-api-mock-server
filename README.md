@@ -34,8 +34,8 @@ mock-server/
     │               └── mobile.api/
     │                   └── customers/
     │                       └── #{partnerId}#personal-data/
-    │                           ├── max-mustermann.json
-    │                           └── maria-musterfrau.json
+    │                           ├── max-mustermann.json  # now Hans Müller payload (id: 1234567891)
+    │                           └── maria-musterfrau.json (id: 1234567890)
     └── test/
         └── java/
             └── com/acme/banking/demoaccount/
@@ -68,7 +68,7 @@ mvn clean package
 java -jar target/demoaccount-1.0.0-SNAPSHOT.jar
 ```
 
-The server will start on **port 8080**.
+The server will start on **port 8080** (or whatever is provided by the PORT environment variable in Cloud Run).
 
 ### Cloud Run Deployment
 
@@ -89,7 +89,7 @@ The deployment script will:
 3. Push to Google Container Registry
 4. Deploy to Cloud Run
 
-**Production URL:** `https://mock-server-1041912723804.us-central1.run.app`
+**Example deployed URL (yours will differ):** `https://mock-server-1041912723804.us-central1.run.app`
 
 ## Available Endpoints
 
@@ -103,14 +103,30 @@ Returns personal data for a customer.
 **URL Pattern:**
 - `/customers/.*/personal-data` (regex pattern, any partnerId is accepted)
 
-**Example Request:**
+**Example Requests:**
+
+Hans Müller (explicit partner id):
 ```bash
-curl -X GET http://localhost:8080/customers/6585363429/personal-data \
+curl -X GET http://localhost:8080/customers/1234567891/personal-data \
   -H "deuba-client-id: pb-banking" \
   -H "Accept: application/json"
 ```
 
-**Example Response:**
+Maria Musterfrau (explicit partner id):
+```bash
+curl -X GET http://localhost:8080/customers/1234567890/personal-data \
+  -H "deuba-client-id: pb-banking" \
+  -H "Accept: application/json"
+```
+
+Default (any other partner id returns the Hans Müller payload):
+```bash
+curl -X GET http://localhost:8080/customers/any-id/personal-data \
+  -H "deuba-client-id: pb-banking" \
+  -H "Accept: application/json"
+```
+
+**Example Response (Hans Müller):**
 ```json
 {
   "firstname": "Hans",
@@ -163,36 +179,60 @@ curl -X GET http://localhost:8080/customers/6585363429/personal-data \
 }
 ```
 
-## Available Test Clients
-
-The mock server provides two pre-configured customer profiles:
-
-### 1. Hans Müller (Male - Default)
-- **Partner ID**: Any (default response)
-- **Gender**: MALE
-- **Marital Status**: married
-- **Location**: Berlin
-
-```bash
-curl -X GET http://localhost:8080/customers/any-id/personal-data \
-  -H "deuba-client-id: pb-banking" \
-  -H "Accept: application/json"
+**Example Response (Maria Musterfrau):**
+```json
+{
+  "firstname": "Maria",
+  "lastname": "Musterfrau",
+  "academicTitle": "Dr.",
+  "titleOfNobility": "",
+  "fullName": "Dr. Maria Musterfrau",
+  "id": 1234567890,
+  "dateOfBirth": "1988-05-15",
+  "placeOfBirth": "Berlin",
+  "nationality": "DEU",
+  "maritalStatus": "single",
+  "gender": "FEMALE",
+  "registrationAddress": {
+    "id": 2,
+    "street": "Friedrichstraße",
+    "streetNumber": "45",
+    "postalCode": "10117",
+    "city": "Berlin"
+  },
+  "postalAddress": {
+    "id": 2,
+    "street": "Friedrichstraße",
+    "streetNumber": "45",
+    "postalCode": "10117",
+    "city": "Berlin"
+  },
+  "emailAddress": {
+    "id": 1,
+    "address": "maria.musterfrau@mail.com",
+    "type": "PRIVATE"
+  },
+  "phoneNumbers": {
+    "private": {
+      "id": 2,
+      "countryCode": "+49",
+      "number": "987654321"
+    },
+    "work": {
+      "id": 2,
+      "countryCode": "+49",
+      "number": "333444555"
+    },
+    "mobile": {
+      "id": 2,
+      "countryCode": "+49",
+      "number": "800000600"
+    }
+  }
+}
 ```
 
-### 2. Maria Musterfrau (Female)
-- **Partner ID**: `1234567890`
-- **Gender**: FEMALE
-- **Marital Status**: single
-- **Academic Title**: Dr.
-- **Location**: Berlin
-
-```bash
-curl -X GET http://localhost:8080/customers/1234567890/personal-data \
-  -H "deuba-client-id: pb-banking" \
-  -H "Accept: application/json"
-```
-
-> **Note:** Any partner ID other than `1234567890` will return the default Hans Müller response.
+> **Note:** Any partner ID other than `1234567890` will return the default Hans Müller response unless a specific mapping exists for that ID.
 
 ## How to Test
 
