@@ -1,0 +1,67 @@
+{
+  "priority": 4,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/customers/.*/personal-data",
+    "headers": {
+      "deuba-client-id": {
+        "contains": "-banking"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "firstname": "Hans",
+      "lastname": "Müller",
+      "academicTitle": "",
+      "titleOfNobility": "",
+      "fullName": "Hans Müller",
+      "id": 1234567891,
+      "dateOfBirth": "1996-01-01",
+      "placeOfBirth": "",
+      "nationality": "DEU",
+      "maritalStatus": "married",
+      "gender": "MALE",
+      "registrationAddress": {
+        "id": 1,
+        "street": "Kurfürstendamm",
+        "streetNumber": "100",
+        "postalCode": "10711",
+        "city": "Berlin"
+      },
+      "postalAddress": {
+        "id": 1,
+        "street": "Kurfürstendamm",
+        "streetNumber": "100",
+        "postalCode": "10711",
+        "city": "Berlin"
+      },
+      "emailAddress": {
+        "id": 0,
+        "address": "hans.mueller@random.de",
+        "type": "PRIVATE"
+      },
+      "phoneNumbers": {
+        "private": {
+          "id": 1,
+          "countryCode": "+49",
+          "number": "987654321"
+        },
+        "work": {
+          "id": 1,
+          "countryCode": "+49",
+          "number": "444555666"
+        },
+        "mobile": {
+          "id": 1,
+          "countryCode": "+49",
+          "number": "111222333"
+        }
+      }
+    }
+  }
+}
