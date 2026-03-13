@@ -1,11 +1,17 @@
 {
-  "priority": 5,
+  "priority": 3,
   "request": {
     "method": "GET",
     "urlPattern": "/customers/1234567890/personal-data",
     "headers": {
       "deuba-client-id": {
         "contains": "-banking"
+      },
+      "DB-ID": {
+        "matches": ".+"
+      },
+      "Authorization": {
+        "matches": "Bearer .+"
       }
     }
   },

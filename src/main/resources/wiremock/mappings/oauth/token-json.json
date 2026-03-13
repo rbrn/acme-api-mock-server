@@ -1,0 +1,29 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPattern": "/oauth/token",
+    "headers": {
+      "Content-Type": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.grant_type"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZXMtYWdlbnQtc2VydmljZSIsImlzcyI6ImVpZHAtbW9jayIsImF1ZCI6ImFjbWUtYmFua2luZy1hcGkiLCJleHAiOjk5OTk5OTk5OTksImlhdCI6MTcxMDAwMDAwMCwic2NvcGVzIjpbInJlYWQ6Y3VzdG9tZXJzIiwicmVhZDphY2NvdW50cyJdfQ.mock-eidp-signature",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "scope": "read:customers read:accounts"
+    }
+  }
+}

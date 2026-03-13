@@ -72,8 +72,13 @@ public class DemoAccountApplication {
             logger.info("Mappings loaded from classpath:/wiremock");
             logger.info("========================================");
             logger.info("Available endpoints:");
-            logger.info("  GET /customers/{partnerId}/personal-data");
-            logger.info("  Required header: deuba-client-id (must contain '-banking')");
+            logger.info("  POST /oauth/token                          - EIDP token (client_credentials)");
+            logger.info("  POST /authz/authorize                      - AuthZ authorization token");
+            logger.info("  GET  /customers/{partnerId}/personal-data  - Customer personal data");
+            logger.info("Required headers for customer endpoints:");
+            logger.info("  deuba-client-id (must contain '-banking')");
+            logger.info("  DB-ID (any non-empty value)");
+            logger.info("  Authorization: Bearer <authz_token>");
             logger.info("========================================");
         };
     }

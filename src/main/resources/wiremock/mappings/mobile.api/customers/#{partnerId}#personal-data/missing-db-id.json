@@ -1,0 +1,28 @@
+{
+  "priority": 6,
+  "request": {
+    "method": "GET",
+    "urlPattern": "/customers/.*/personal-data",
+    "headers": {
+      "deuba-client-id": {
+        "contains": "-banking"
+      },
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "DB-ID": {
+        "absent": true
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "error": "forbidden",
+      "error_description": "Missing DB-ID header. A valid database identifier is required."
+    }
+  }
+}

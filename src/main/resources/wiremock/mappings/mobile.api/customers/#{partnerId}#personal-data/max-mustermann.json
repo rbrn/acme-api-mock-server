@@ -6,6 +6,12 @@
     "headers": {
       "deuba-client-id": {
         "contains": "-banking"
+      },
+      "DB-ID": {
+        "matches": ".+"
+      },
+      "Authorization": {
+        "matches": "Bearer .+"
       }
     }
   },

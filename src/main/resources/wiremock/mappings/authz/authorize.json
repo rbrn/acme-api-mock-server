@@ -1,0 +1,38 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPattern": "/authz/authorize",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "Content-Type": {
+        "contains": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.resource"
+      },
+      {
+        "matchesJsonPath": "$.action"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "authorized": true,
+      "authorization_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjZXMtYWdlbnQtc2VydmljZSIsImlzcyI6ImF1dGh6LW1vY2siLCJhdWQiOiJtb2JpbGUtYXBpIiwiZXhwIjo5OTk5OTk5OTk5LCJpYXQiOjE3MTAwMDAwMDAsInJlc291cmNlIjoiY3VzdG9tZXJzOnBlcnNvbmFsLWRhdGEiLCJhY3Rpb24iOiJyZWFkIiwicGVybWlzc2lvbnMiOlsicmVhZDpjdXN0b21lcnMiLCJyZWFkOnBlcnNvbmFsLWRhdGEiXX0.mock-authz-signature",
+      "permissions": [
+        "read:customers",
+        "read:personal-data"
+      ],
+      "expires_in": 1800
+    }
+  }
+}
