@@ -10,10 +10,12 @@ fi
 
 IMAGE_NAME=$PROJECT_ID/mock-server
 REGION=us-central1
+MOCK_API_KEY="YGCVjdxtq_FjDc1vKqnSpOZji6CTWd8BECVpdNyegGQ"
 
 echo "Project ID: $PROJECT_ID"
 echo "Image: $IMAGE_NAME"
 echo "Region: $REGION"
+echo "API Key: ${MOCK_API_KEY:0:8}... (truncated)"
 
 # Build the application
 echo "Building the application..."
@@ -52,6 +54,7 @@ gcloud run deploy mock-server \
   --timeout 300 \
   --max-instances 10 \
   --no-cpu-throttling \
+  --set-env-vars "MOCK_API_KEY=$MOCK_API_KEY" \
   --execution-environment gen2
 
 if [ $? -eq 0 ]; then

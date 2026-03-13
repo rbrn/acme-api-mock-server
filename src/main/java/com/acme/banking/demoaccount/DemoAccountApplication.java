@@ -29,6 +29,9 @@ public class DemoAccountApplication {
     @Value("${wiremock.root.dir:}")
     private String wireMockRootDir;
 
+    @Value("${mock.api.key:}")
+    private String mockApiKey;
+
     private WireMockServer wireMockServer;
 
     public static void main(String[] args) {
@@ -56,6 +59,14 @@ public class DemoAccountApplication {
             logger.info("Loading WireMock files from classpath");
         }
 
+        // Register API key filter
+        config.extensions(new ApiKeyRequestFilter(mockApiKey));
+        if (mockApiKey != null && !mockApiKey.isBlank()) {
+            logger.info("API key protection ENABLED (X-API-Key header required)");
+        } else {
+            logger.info("API key protection DISABLED (no MOCK_API_KEY set)");
+        }
+
         wireMockServer = new WireMockServer(config);
         return wireMockServer;
     }
@@ -79,6 +90,7 @@ public class DemoAccountApplication {
             logger.info("  deuba-client-id (must contain '-banking')");
             logger.info("  DB-ID (any non-empty value)");
             logger.info("  Authorization: Bearer <authz_token>");
+            logger.info("  X-API-Key: <api-key> (all endpoints)");
             logger.info("========================================");
         };
     }
