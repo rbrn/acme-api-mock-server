@@ -1,0 +1,126 @@
+{
+  "success": true,
+  "data": {
+    "entryPaths": [
+      {
+        "code": "SERVICE_REQUEST",
+        "label": "Service request",
+        "description": "Book help for an operational banking request."
+      },
+      {
+        "code": "PRODUCT_CONSULTATION",
+        "label": "Product consultation",
+        "description": "Book advisory guidance for a financial product."
+      }
+    ],
+    "topics": [
+      {
+        "code": "DAILY_BANKING",
+        "label": "Daily banking",
+        "entryPath": "SERVICE_REQUEST",
+        "requiresComment": true
+      },
+      {
+        "code": "IN",
+        "label": "Investments",
+        "entryPath": "PRODUCT_CONSULTATION",
+        "requiresComment": false
+      },
+      {
+        "code": "MO",
+        "label": "Mortgage",
+        "entryPath": "PRODUCT_CONSULTATION",
+        "requiresComment": false
+      },
+      {
+        "code": "RE",
+        "label": "Retirement planning",
+        "entryPath": "PRODUCT_CONSULTATION",
+        "requiresComment": false
+      }
+    ],
+    "consultationChannels": [
+      {
+        "code": "BRANCH",
+        "label": "Branch",
+        "description": "Meet an advisor at a branch."
+      },
+      {
+        "code": "PHONE",
+        "label": "Phone",
+        "description": "Receive a scheduled advisory phone call."
+      },
+      {
+        "code": "VIDEO",
+        "label": "Video",
+        "description": "Join a scheduled video consultation."
+      }
+    ],
+    "advisorModes": [
+      {
+        "code": "INTERNAL",
+        "label": "Internal advisor",
+        "allowedChannels": [
+          "BRANCH",
+          "PHONE",
+          "VIDEO"
+        ]
+      },
+      {
+        "code": "PRIVATE_BANKING",
+        "label": "Private banking advisor",
+        "allowedChannels": [
+          "BRANCH",
+          "PHONE"
+        ]
+      },
+      {
+        "code": "INDEPENDENT",
+        "label": "Independent advisor",
+        "allowedChannels": [
+          "BRANCH",
+          "VIDEO"
+        ]
+      }
+    ],
+    "validationRules": [
+      {
+        "field": "comment",
+        "required": true,
+        "message": "A short issue summary is required for service requests.",
+        "appliesWhen": {
+          "entryPath": "SERVICE_REQUEST"
+        }
+      },
+      {
+        "field": "city",
+        "required": true,
+        "message": "Branch consultations require a city, postal code, or address hint.",
+        "appliesWhen": {
+          "consultationChannel": "BRANCH"
+        }
+      },
+      {
+        "field": "summaryConfirmed",
+        "required": true,
+        "message": "Appointment create, cancel, and reschedule actions require an explicit spoken summary confirmation.",
+        "appliesWhen": {
+          "stage": "LIFECYCLE_MUTATION"
+        }
+      },
+      {
+        "field": "customer.email",
+        "required": true,
+        "message": "A confirmation email address is required.",
+        "appliesWhen": {
+          "stage": "CREATE"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

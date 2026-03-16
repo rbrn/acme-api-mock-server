@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "data": {
+    "matches": [
+      {
+        "serviceCode": "STANDING_ORDER_SUPPORT",
+        "label": "Standing order support",
+        "topicCode": "DAILY_BANKING",
+        "confidence": 0.93,
+        "requiresComment": true
+      }
+    ],
+    "fallbackGuidance": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

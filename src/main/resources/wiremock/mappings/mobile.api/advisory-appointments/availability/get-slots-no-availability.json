@@ -1,0 +1,28 @@
+{
+  "priority": 4,
+  "request": {
+    "method": "GET",
+    "urlPath": "/advisory-appointments/availability",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      },
+      "X-Mock-Scenario": {
+        "equalTo": "no-availability"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/availability/no-availability.json"
+  }
+}

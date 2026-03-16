@@ -1,0 +1,34 @@
+{
+  "priority": 5,
+  "scenarioName": "advisory-appointment-lifecycle-APT-BRANCH-0001",
+  "requiredScenarioState": "Started",
+  "newScenarioState": "BOOKED",
+  "request": {
+    "method": "POST",
+    "urlPath": "/advisory-appointments/lifecycle",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      },
+      "Content-Type": {
+        "contains": "application/json"
+      },
+      "X-Mock-Scenario": {
+        "equalTo": "branch-lifecycle"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/lifecycle/create/branch-booked.json"
+  }
+}

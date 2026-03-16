@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "appointmentId": "APT-BRANCH-0001",
+    "status": "RESCHEDULED",
+    "confirmationCode": "CONF-BRANCH-0001",
+    "consultationChannel": "BRANCH",
+    "topicCode": "IN",
+    "serviceCode": null,
+    "locationId": "20286143",
+    "locationName": "Deutsche Bank Friedrichstraße 181, Berlin",
+    "scheduledStart": "2030-06-19T11:00:00",
+    "scheduledEnd": "2030-06-19T11:45:00",
+    "advisorName": "Anna Becker",
+    "summaryText": "Branch consultation at Deutsche Bank Friedrichstraße 181, Berlin on 2030-06-19T11:00:00",
+    "canCancelUntil": "2030-06-18T11:00:00",
+    "canRescheduleUntil": "2030-06-18T11:00:00",
+    "timeline": [
+      "2030-06-15T09:00:00 | BOOKED | Appointment created in mock-server scenario",
+      "2030-06-15T09:10:00 | RESCHEDULED | Moved to 2030-06-19T11:00:00"
+    ],
+    "delivery": {
+      "channel": "EMAIL",
+      "destinationMasked": "m***@example.com",
+      "followUpText": "Updated branch confirmation sent by mock email."
+    }
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-15T09:10:00Z",
+    "apiVersion": "1.0"
+  }
+}

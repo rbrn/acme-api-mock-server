@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "data": {
+    "locations": [
+      {
+        "locationId": "20286143",
+        "locationType": "BRANCH",
+        "branchId": "20286143",
+        "name": "Advisory Center Friedrichstraße",
+        "address": "Friedrichstraße 181",
+        "city": "Berlin",
+        "postalCode": "10117",
+        "phone": "+49 30 123456",
+        "wheelchairAccessible": true,
+        "distanceKm": 1.2,
+        "supportedChannels": [
+          "BRANCH"
+        ],
+        "supportedAdvisorModes": [
+          "INTERNAL",
+          "PRIVATE_BANKING"
+        ],
+        "nextAvailableDay": "2030-06-18",
+        "eligibilityReason": "Supports investment and mortgage consultations."
+      },
+      {
+        "locationId": "20337740",
+        "locationType": "BRANCH",
+        "branchId": "20337740",
+        "name": "Advisory Center Müllerstraße",
+        "address": "Müllerstraße 32",
+        "city": "Berlin",
+        "postalCode": "13353",
+        "phone": "+49 30 123457",
+        "wheelchairAccessible": true,
+        "distanceKm": 3.4,
+        "supportedChannels": [
+          "BRANCH"
+        ],
+        "supportedAdvisorModes": [
+          "INTERNAL"
+        ],
+        "nextAvailableDay": "2030-06-19",
+        "eligibilityReason": "Supports service-request consultations and accessible branch visits."
+      }
+    ],
+    "count": 2,
+    "totalMatches": 2,
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

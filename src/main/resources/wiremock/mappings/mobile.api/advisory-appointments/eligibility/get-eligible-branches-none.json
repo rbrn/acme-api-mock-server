@@ -1,0 +1,28 @@
+{
+  "priority": 4,
+  "request": {
+    "method": "GET",
+    "urlPath": "/advisory-appointments/eligibility",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      },
+      "X-Mock-Scenario": {
+        "equalTo": "no-eligible-locations"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/eligibility/no-locations.json"
+  }
+}

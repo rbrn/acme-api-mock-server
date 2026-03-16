@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "locations": [],
+    "count": 0,
+    "totalMatches": 0,
+    "fallbackSuggestions": [
+      {
+        "type": "TRY_ANOTHER_LOCATION",
+        "label": "Try another city or a nearby branch."
+      },
+      {
+        "type": "TRY_ANOTHER_CHANNEL",
+        "label": "Phone or video consultation may be available sooner."
+      }
+    ]
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

@@ -22,8 +22,11 @@ class DemoAccountApplicationIntegrationTest {
     private static final int WIREMOCK_PORT = 8089;
     private static final String BASE_URL = "http://localhost:" + WIREMOCK_PORT;
     private static final String PERSONAL_DATA_ENDPOINT = "/customers/{partnerId}/personal-data";
-    private static final String PARTNER_ID = "6585363429";
+    private static final String PARTNER_ID = "1234567890";
     private static final String HEADER_DEUBA_CLIENT_ID = "deuba-client-id";
+    private static final String HEADER_DB_ID = "DB-ID";
+    private static final String HEADER_AUTHORIZATION = "Authorization";
+    private static final String AUTH_TOKEN = "Bearer mock-authz-token";
 
     private WireMockServer wireMockServer;
 
@@ -50,118 +53,113 @@ class DemoAccountApplicationIntegrationTest {
     @Test
     @DisplayName("Should return personal data with valid deuba-client-id header containing 'pb-banking'")
     void shouldReturnPersonalDataWithPbBankingHeader() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "pb-banking")
+        authorizedPersonalDataRequest("pb-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("firstname", equalTo("Max"))
-                .body("lastname", equalTo("Mustermann"))
+                .body("firstname", equalTo("Maria"))
+                .body("lastname", equalTo("Musterfrau"))
                 .body("nationality", equalTo("DEU"))
-                .body("id", equalTo(6585363429L))
-                .body("fullName", equalTo("Max Mustermann"));
+                .body("id", equalTo(1234567890))
+                .body("fullName", equalTo("Dr. Maria Musterfrau"));
     }
 
     @Test
     @DisplayName("Should return personal data with valid deuba-client-id header containing 'mobile-banking'")
     void shouldReturnPersonalDataWithMobileBankingHeader() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "mobile-banking")
+        authorizedPersonalDataRequest("mobile-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("firstname", equalTo("Max"))
+                .body("firstname", equalTo("Maria"))
                 .body("nationality", equalTo("DEU"));
     }
 
     @Test
     @DisplayName("Should return personal data with valid deuba-client-id header containing 'app-banking'")
     void shouldReturnPersonalDataWithAppBankingHeader() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "app-banking")
+        authorizedPersonalDataRequest("app-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("firstname", equalTo("Max"))
+                .body("firstname", equalTo("Maria"))
                 .body("nationality", equalTo("DEU"));
     }
 
     @Test
     @DisplayName("Should return personal data with correct address information")
     void shouldReturnCorrectAddressInformation() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "pb-banking")
+        authorizedPersonalDataRequest("pb-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
-                .body("registrationAddress.street", equalTo("Taunusanlage"))
-                .body("registrationAddress.streetNumber", equalTo("12"))
-                .body("registrationAddress.postalCode", equalTo("60325"))
-                .body("registrationAddress.city", equalTo("Frankfurt am Main"))
-                .body("postalAddress.street", equalTo("Taunusanlage"));
+                .body("registrationAddress.street", equalTo("Friedrichstraße"))
+                .body("registrationAddress.streetNumber", equalTo("45"))
+                .body("registrationAddress.postalCode", equalTo("10117"))
+                .body("registrationAddress.city", equalTo("Berlin"))
+                .body("postalAddress.street", equalTo("Friedrichstraße"));
     }
 
     @Test
     @DisplayName("Should return personal data with correct contact information")
     void shouldReturnCorrectContactInformation() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "pb-banking")
+        authorizedPersonalDataRequest("pb-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
-                .body("emailAddress.address", equalTo("max.mustermann@mail.com"))
+                .body("emailAddress.address", equalTo("maria.musterfrau@mail.com"))
                 .body("emailAddress.type", equalTo("PRIVATE"))
                 .body("phoneNumbers.private.countryCode", equalTo("+49"))
-                .body("phoneNumbers.private.number", equalTo("123456789"))
-                .body("phoneNumbers.mobile.number", equalTo("900000700"));
+                .body("phoneNumbers.private.number", equalTo("987654321"))
+                .body("phoneNumbers.mobile.number", equalTo("800000600"));
     }
 
     @Test
     @DisplayName("Should return personal data with correct personal details")
     void shouldReturnCorrectPersonalDetails() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "pb-banking")
+        authorizedPersonalDataRequest("pb-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(200)
-                .body("dateOfBirth", equalTo("1996-01-01"))
-                .body("maritalStatus", equalTo("married"))
-                .body("gender", equalTo("MALE"));
+                .body("dateOfBirth", equalTo("1988-05-15"))
+                .body("maritalStatus", equalTo("single"))
+                .body("gender", equalTo("FEMALE"));
     }
 
     @Test
     @DisplayName("Should work with different partner IDs due to regex pattern matching")
     void shouldWorkWithDifferentPartnerIds() {
-        given()
-                .header(HEADER_DEUBA_CLIENT_ID, "pb-banking")
+        authorizedPersonalDataRequest("pb-banking")
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, "9999999999")
         .then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("firstname", equalTo("Max"));
+                .body("firstname", equalTo("Hans"));
     }
 
     @Test
     @DisplayName("Should return 404 when deuba-client-id header is missing")
     void shouldReturn404WhenHeaderIsMissing() {
         given()
+                .header(HEADER_DB_ID, "acme-banking-db-01")
+                .header(HEADER_AUTHORIZATION, AUTH_TOKEN)
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
@@ -174,10 +172,19 @@ class DemoAccountApplicationIntegrationTest {
     void shouldReturn404WhenHeaderValueIsInvalid() {
         given()
                 .header(HEADER_DEUBA_CLIENT_ID, "invalid-header")
+                .header(HEADER_DB_ID, "acme-banking-db-01")
+                .header(HEADER_AUTHORIZATION, AUTH_TOKEN)
                 .accept(ContentType.JSON)
         .when()
                 .get(PERSONAL_DATA_ENDPOINT, PARTNER_ID)
         .then()
                 .statusCode(404);
+    }
+
+    private io.restassured.specification.RequestSpecification authorizedPersonalDataRequest(String clientId) {
+        return given()
+                .header(HEADER_DEUBA_CLIENT_ID, clientId)
+                .header(HEADER_DB_ID, "acme-banking-db-01")
+                .header(HEADER_AUTHORIZATION, AUTH_TOKEN);
     }
 }

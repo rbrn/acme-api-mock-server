@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "matches": [],
+    "fallbackGuidance": [
+      "Try describing the request in a few more words.",
+      "You can also switch to a product consultation such as investments or mortgage advice."
+    ]
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

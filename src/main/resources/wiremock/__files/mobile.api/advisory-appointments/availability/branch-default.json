@@ -1,0 +1,28 @@
+{
+  "success": true,
+  "data": {
+    "locationId": "20286143",
+    "timezone": "Europe/Berlin",
+    "availableDays": [
+      {
+        "date": "2030-06-18",
+        "label": "TUESDAY, 2030-06-18",
+        "availableSlotCount": 3,
+        "earliestTime": "09:30"
+      },
+      {
+        "date": "2030-06-19",
+        "label": "WEDNESDAY, 2030-06-19",
+        "availableSlotCount": 2,
+        "earliestTime": "11:00"
+      }
+    ],
+    "slots": [],
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

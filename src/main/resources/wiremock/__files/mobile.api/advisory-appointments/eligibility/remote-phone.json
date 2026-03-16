@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": {
+    "locations": [
+      {
+        "locationId": "REMOTE-PHONE-DE",
+        "locationType": "REMOTE_CENTER",
+        "branchId": null,
+        "name": "Acme Advisory Phone Center",
+        "address": null,
+        "city": "Frankfurt am Main",
+        "postalCode": null,
+        "phone": "+49 800 123-4567",
+        "wheelchairAccessible": null,
+        "distanceKm": null,
+        "supportedChannels": [
+          "PHONE"
+        ],
+        "supportedAdvisorModes": [
+          "INTERNAL",
+          "PRIVATE_BANKING"
+        ],
+        "nextAvailableDay": "2030-06-18",
+        "eligibilityReason": "Remote phone advisory is available without a branch visit."
+      }
+    ],
+    "count": 1,
+    "totalMatches": 1,
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

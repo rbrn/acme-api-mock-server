@@ -1,0 +1,30 @@
+{
+  "priority": 5,
+  "scenarioName": "advisory-appointment-lifecycle-APT-BRANCH-0001",
+  "requiredScenarioState": "CANCELLED",
+  "request": {
+    "method": "POST",
+    "urlPath": "/advisory-appointments/lifecycle/APT-BRANCH-0001/cancel",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      },
+      "Content-Type": {
+        "contains": "application/json"
+      }
+    }
+  },
+  "response": {
+    "status": 409,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/errors/cancel-window-closed.json"
+  }
+}

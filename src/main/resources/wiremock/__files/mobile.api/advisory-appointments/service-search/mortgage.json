@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "matches": [
+      {
+        "serviceCode": "MORTGAGE_CONSULTATION",
+        "label": "Mortgage consultation",
+        "topicCode": "MO",
+        "confidence": 0.91,
+        "requiresComment": false
+      }
+    ],
+    "fallbackGuidance": [
+      "If you already know the city, the advisor can next search for available consultation locations."
+    ]
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": {
+    "locationId": "REMOTE-VIDEO-DE",
+    "timezone": "Europe/Berlin",
+    "availableDays": [
+      {
+        "date": "2030-06-18",
+        "label": "TUESDAY, 2030-06-18",
+        "availableSlotCount": 2,
+        "earliestTime": "09:00"
+      }
+    ],
+    "slots": [
+      {
+        "slotId": "SLOT-VIDEO-REMOTE-VIDEO-DE-20300618-0900",
+        "startTime": "2030-06-18T09:00:00",
+        "endTime": "2030-06-18T09:45:00",
+        "advisorId": "ADV-VIDEO-1",
+        "advisorName": "Mila Vogel",
+        "advisorMode": "INTERNAL"
+      },
+      {
+        "slotId": "SLOT-VIDEO-REMOTE-VIDEO-DE-20300618-1200",
+        "startTime": "2030-06-18T12:00:00",
+        "endTime": "2030-06-18T12:45:00",
+        "advisorId": "ADV-VIDEO-2",
+        "advisorName": "Anna Becker",
+        "advisorMode": "INTERNAL"
+      }
+    ],
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

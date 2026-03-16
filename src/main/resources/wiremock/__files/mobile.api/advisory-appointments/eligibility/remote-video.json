@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "data": {
+    "locations": [
+      {
+        "locationId": "REMOTE-VIDEO-DE",
+        "locationType": "REMOTE_CENTER",
+        "branchId": null,
+        "name": "Acme Advisory Video Center",
+        "address": null,
+        "city": "Berlin",
+        "postalCode": null,
+        "phone": "+49 800 123-4567",
+        "wheelchairAccessible": null,
+        "distanceKm": null,
+        "supportedChannels": [
+          "VIDEO"
+        ],
+        "supportedAdvisorModes": [
+          "INTERNAL"
+        ],
+        "nextAvailableDay": "2030-06-18",
+        "eligibilityReason": "Remote video advisory is available without a branch visit."
+      }
+    ],
+    "count": 1,
+    "totalMatches": 1,
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

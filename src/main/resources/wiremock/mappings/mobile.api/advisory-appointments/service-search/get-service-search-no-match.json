@@ -1,0 +1,30 @@
+{
+  "priority": 8,
+  "request": {
+    "method": "GET",
+    "urlPath": "/advisory-appointments/service-search",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      }
+    },
+    "queryParameters": {
+      "query": {
+        "matches": ".+"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/service-search/no-match.json"
+  }
+}

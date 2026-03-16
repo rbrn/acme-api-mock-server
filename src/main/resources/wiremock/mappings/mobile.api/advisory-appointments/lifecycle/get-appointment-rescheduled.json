@@ -1,0 +1,32 @@
+{
+  "priority": 5,
+  "scenarioName": "advisory-appointment-lifecycle-APT-BRANCH-0001",
+  "requiredScenarioState": "RESCHEDULED",
+  "request": {
+    "method": "GET",
+    "urlPath": "/advisory-appointments/lifecycle/APT-BRANCH-0001",
+    "headers": {
+      "Authorization": {
+        "matches": "Bearer .+"
+      },
+      "X-BFA-Client": {
+        "equalTo": "advisory-appointment-bff"
+      },
+      "X-Correlation-ID": {
+        "matches": ".+"
+      }
+    },
+    "queryParameters": {
+      "appointmentAccessToken": {
+        "equalTo": "aat-branch-0001"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mobile.api/advisory-appointments/lifecycle/details/branch-rescheduled.json"
+  }
+}

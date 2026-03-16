@@ -1,0 +1,15 @@
+{
+  "success": false,
+  "error": {
+    "code": "RESCHEDULE_WINDOW_CLOSED",
+    "message": "Rescheduling is no longer allowed for this appointment.",
+    "details": {
+      "appointmentId": "APT-BRANCH-0001"
+    }
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-15T09:17:00Z",
+    "apiVersion": "1.0"
+  }
+}

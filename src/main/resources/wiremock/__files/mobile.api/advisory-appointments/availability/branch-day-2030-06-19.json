@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "data": {
+    "locationId": "20286143",
+    "timezone": "Europe/Berlin",
+    "availableDays": [
+      {
+        "date": "2030-06-18",
+        "label": "TUESDAY, 2030-06-18",
+        "availableSlotCount": 3,
+        "earliestTime": "09:30"
+      },
+      {
+        "date": "2030-06-19",
+        "label": "WEDNESDAY, 2030-06-19",
+        "availableSlotCount": 2,
+        "earliestTime": "11:00"
+      }
+    ],
+    "slots": [
+      {
+        "slotId": "SLOT-BRANCH-20286143-20300619-1100",
+        "startTime": "2030-06-19T11:00:00",
+        "endTime": "2030-06-19T11:45:00",
+        "advisorId": "ADV-BRANCH-4",
+        "advisorName": "Anna Becker",
+        "advisorMode": "INTERNAL"
+      },
+      {
+        "slotId": "SLOT-BRANCH-20286143-20300619-1530",
+        "startTime": "2030-06-19T15:30:00",
+        "endTime": "2030-06-19T16:15:00",
+        "advisorId": "ADV-BRANCH-5",
+        "advisorName": "Mila Vogel",
+        "advisorMode": "INTERNAL"
+      }
+    ],
+    "fallbackSuggestions": []
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}

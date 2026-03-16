@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "data": {
+    "matches": [
+      {
+        "serviceCode": "CARD_SERVICE",
+        "label": "Card service appointment",
+        "topicCode": "DAILY_BANKING",
+        "confidence": 0.84,
+        "requiresComment": true
+      }
+    ],
+    "fallbackGuidance": [
+      "Describe the card issue briefly so the advisor can prepare before the appointment."
+    ]
+  },
+  "meta": {
+    "correlationId": "{{request.headers.X-Correlation-ID}}",
+    "timestamp": "2030-06-01T09:00:00Z",
+    "apiVersion": "1.0"
+  }
+}
